@@ -1,0 +1,552 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+@import "animation";
+$leftPositionVal : 14.28571428571429%;
+$topPositionVal : 100px;
+
+@mixin positionMapState( $top, $left) {
+  top: $topPositionVal * $top;
+  left: $leftPositionVal * $left;
+  @if($left>3){
+    .popupForChart{
+      left: auto;
+      right: 50%;
+    }
+  }
+}
+:root {
+  --circle-width: 0px;
+  --circle-height: 0px;
+  --month-circle-diameter:12.5px;
+}
+body{
+  background-color: #f5f5f5;
+  font-family: 'Inter', sans-serif;
+}
+// mu css
+.popupForChart{
+  position: absolute;
+  left: 50%;
+  bottom: 60px;
+  height: 200px;
+  width: 300px;
+  padding: 10px;
+  background-color: #fff;
+  // transform: translateX(-50%);
+  border-radius: 8px;
+  display: none;
+  z-index: 2;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  // &:first-child{
+  //  display: block;
+  // }
+  .title{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-transform: capitalize;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+}
+.chart-style{
+  height: 100%;
+  width: 100%;
+  // background-color: yellow;
+  // margin: 0 auto;
+
+}
+.svg-circle{
+  width: var(--circle-diameter );
+  height: var(--circle-diameter );
+  border-radius: 500px;
+  background-color: #1f95ff;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  // &:hover{
+  //   .popupForChart{
+  //     display: block;
+  //   }
+  // }
+}
+.cart-container{
+  position: relative;
+  left: 0;
+  top: 0;
+  text-align: center;
+  margin-bottom: 24px;
+  width: 14.2%;
+  &:nth-child(7n) , &:nth-child(7n+6), &:nth-child(7n+5){
+    .popupForChart{
+      left: auto;
+      right: 50%;
+    }
+  }
+  .state-name{
+    font-size: 12px;
+    margin: 8px 0 6px 0 ;
+  }
+  .count-num{
+    color: #1f95ff;
+  }
+}
+.cart-container:hover{
+  stroke:#ccc;
+  stroke-width:1px;
+  fill: darken(#1f95ff,100);
+//   .svgHover{
+//     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+// -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+// -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+//   }
+  
+  // filter:"url(#f2)";
+  .popupForChart{
+    display: block;
+  }
+}
+.header-section{
+  padding: 200px 0;
+}
+.logo-container{
+  display: flex;
+  align-items: center;
+  .log-img{
+    img{
+      width: 248px;
+    }
+  }
+  .img-text{
+    .text{
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+}
+.tab-section{
+  // .nav-pills{
+  //   // margin-bottom: 24px;
+  //   // padding-bottom: 48px;
+  // }
+  .nav-item{
+    margin-right: 100px;
+    .nav-link{
+
+      p{
+        text-transform: uppercase;
+        color: #000;
+        text-align: center;
+        font-weight: 700;
+        font-size: 16px;
+        margin-top: 8px;
+      }
+      .tab-img{
+        height: 48px;
+        display: block;
+        margin: 0 auto;
+        fill: #000;
+      }
+      &.active{
+        background-color: transparent;
+        p{
+          color: #1f95ff;
+        }
+        .tab-img{
+          // border: 2px solid #000;
+          fill: #1f95ff;
+          // .s0 { fill: #000000 } 
+          // background-color: red;
+          // polygon{
+          //   fill: red;
+          // }​
+        }
+      }
+    }
+  }
+}
+
+.visulization-flex, .debets-flex{
+  display: flex;
+  // border-top: 2px solid #000;
+  padding: 96px 0;
+
+  .left-side{
+    width: 16%;
+    // padding-right: 0px;
+    .visulaization-nav{
+      .nav-link{
+        color: #000;
+        padding-left: 0;
+        padding-right: 0;
+        &.active{
+          background-color: transparent;
+          color: #1f95ff;
+        }
+      }
+
+    }
+
+    .year-title{
+      font-weight: 600;
+      font-size: 16px;
+      line-height: normal;
+      margin-top: 100px;
+      // ma
+    }
+    .year-range{
+      background-color: #fff;
+      border-radius: 8px;
+      max-height: 400px;
+      overflow-y: hidden;
+      &:hover{
+      overflow-y: auto;
+
+      }
+      &:hover::-webkit-scrollbar-track{
+        -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.1);
+        box-shadow: inset 0 0 1px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        background-color: #F5F5F5;
+      }
+      &:hover::-webkit-scrollbar{
+        width: 4px;
+        background-color: #F5F5F5;
+      }
+      &:hover::-webkit-scrollbar-thumb{
+        border-radius: 8px;
+        background-color: #1f95ff;
+      }
+
+      .year{
+        padding: 8px 16px;
+        display: block;
+        margin-right: auto;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+    .visulaization-left-bottom{
+      display: none;
+      // width: 180px;
+      &.active{
+        display: block;
+
+      }
+    }
+    .key-title{
+      border-bottom: 2px solid #000;
+      margin-top: 48px;
+      margin-bottom: 36px;
+      text-transform: uppercase;
+      line-height: 24px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .text{
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .month-list{
+      list-style: none;
+      padding: 0;
+      margin-bottom: 48px;
+
+      li{
+        font-size: 11px;
+        margin-bottom: 8px;
+        a{
+          display: flex;
+          align-items: center;
+          .month-circle{
+            height: 16px;
+            width: 16px;
+            background-color: var(--color-month-circle);
+            border-radius: 50px;
+            margin-right: 16px;
+          }
+        }
+      }
+    }
+
+  }
+  .right-side{
+    width: 84%;
+    .data-year{
+      text-align: right;
+    }
+    .year-data{
+      display: none;
+      align-items: baseline;
+      flex-wrap: wrap;
+      &.active{
+        display: flex;
+        -webkit-animation-name: zoomIn;
+        animation-name: zoomIn;
+        animation-duration: 0.5s;
+      }
+      // background-color: red;
+    }
+    .preventive-container{
+      position: relative;
+      padding-left: 48px;
+      display: none;
+      &.active{
+        display: block;
+        -webkit-animation-name: zoomIn;
+        animation-name: zoomIn;
+        animation-duration: 0.5s;
+
+      }
+      .selected-year{
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-weight: 800;
+
+      }
+    }
+    .prvention-row{
+      display: flex;
+      margin-bottom: 64px;
+      // align-items: baseline;
+      .title-section{
+        width: 20%;
+        // background-color: red;
+        text-align: right;
+        font-size: 13px;
+        font-weight: 600;
+        padding-right: 24px;
+      }
+      .dot-section{
+        width: 80%;
+
+        .month-circle{
+          height: var(--month-circle-diameter);
+          width: var(--month-circle-diameter);
+          background-color: var(--circle-color);
+          border-radius: 50px;
+          margin-right: 5px;
+          margin-bottom: 5px;
+          // display: block;
+        }
+        .one-month, .one-three, .three-six, .eoy{
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          // margin-bottom: px;
+          .number{
+            margin-left: 8px;
+            font-size: 12px;
+          }
+        }
+        .no-data-found{
+          border: 1px solid #e6e6e6;
+          margin-top: 8px;
+        }
+        // background-color: yellow;
+
+      }
+      // &.first{
+      //   .dot-section{
+      //     width: 80%;
+      //     background-color: green;
+
+      //   }
+      //   .year-section{
+      //     width: 10%;
+      //     background-color: pink;
+
+      //   }
+      // }
+    }
+  }
+  .pdfs-box-flex{
+    padding-left: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .pdf-box{
+      width: 49%;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .pdf-link{
+        font-size: 18px;
+        text-decoration: none;
+        cursor: pointer;
+        color: #1f95ff;
+        margin-bottom: 24px;
+      }
+      .state-name{
+        text-align: right;
+        font-size: 18px;
+        color: #b4b4b4;
+        margin: 0;
+        padding: 0;
+      }
+
+    }
+  }
+}
+
+.footer-text{
+  margin-bottom: 98px;
+}
+.detenues-container{
+  padding-left: 100px;
+}
+.visulization-flex .right-side .year-data.active{
+  display: grid;
+  grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%;
+}
+.cart-container {
+  width: auto;
+  min-height: 100px;
+}
+.active-year{
+  font-weight: bold;
+}
+// .visulization-flex .right-side .year-data{
+//   position: relative;
+//   top: 0;
+//   left: 0;
+//   height: 1000px;
+// }
+
+
+// .cart-container {
+//   position: absolute;
+//   max-height: 208px;
+//   min-height: 100px;
+//   height: 300px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: flex-end;
+// }
+// #JammuKashmir{
+//   @include positionMapState(0, 3);
+// }
+// #Punjab{
+//   @include positionMapState(1, 0);
+// }
+// #Chandigarh{
+//   @include positionMapState(1, 1);
+// }
+// #Himachal{
+//   @include positionMapState(1, 2);
+// }
+// #Uttarakhand{
+//   @include positionMapState(1, 3);
+// }
+// #Sikkim{
+//   @include positionMapState(1, 5);
+// }
+// #Arunachal{
+//   @include positionMapState(1, 6);
+// }
+// #Rajasthan{
+//   @include positionMapState(2, 0);
+// }
+// #Haryana{
+//   @include positionMapState(2, 1);
+// }
+// #Delhi{
+//   @include positionMapState(2, 2);
+// }
+// #UP{
+//   @include positionMapState(2, 3);
+// }
+// #Bihar{
+//   @include positionMapState(2, 4);
+// }
+// #Assam{
+//   @include positionMapState(2, 5);
+// }
+// #Nagaland{
+//   @include positionMapState(2, 6);
+// }
+// #Gujarat{
+//   @include positionMapState(3, 0);
+// }
+// #MP{
+//   @include positionMapState(3, 1);
+// }
+// #Chhattisgarh{
+//   @include positionMapState(3, 2);
+// }
+// #Jharkhand{
+//   @include positionMapState(3, 3);
+// }
+// #WB{
+//   @include positionMapState(3, 4);
+// }
+// #Meghalaya{
+//   @include positionMapState(3, 5);
+// }
+// #Manipur{
+//   @include positionMapState(3, 6);
+// }
+// #DNH{
+//   @include positionMapState(4, 0);
+// }
+// #Maharashtra{
+//   @include positionMapState(4, 1);
+// }
+// #Telangana{
+//   @include positionMapState(4, 2);
+// }
+// #Odisha{
+//   @include positionMapState(4, 3);
+// }
+// #Tripura{
+//   @include positionMapState(4, 5);
+// }
+// #Mizoram{
+//   @include positionMapState(4, 6);
+// }
+// #Goa{
+//   @include positionMapState(5, 0);
+// }
+// #Karnataka{
+//   @include positionMapState(5, 1);
+// }
+// #Andhra{
+//   @include positionMapState(5, 2);
+// }
+// #Puducherry{
+//   @include positionMapState(5, 3);
+// }
+// #Lakshadweep{
+//   @include positionMapState(6, 0);
+// }
+// #Kerala{
+//   @include positionMapState(6, 1);
+// }
+// #TamilNadu{
+//   @include positionMapState(6, 2);
+// }
+// #AN{
+//   @include positionMapState(6, 3);
+// }
+@media (max-width: 1199.98px) { 
+  .visulization-flex .left-side, .debets-flex .left-side {
+    width: 20%;
+  }
+  .visulization-flex .right-side, .debets-flex .right-side {
+    width: 80%;
+  }
+  .visulization-flex .pdfs-box-flex, .debets-flex .pdfs-box-flex, .detenues-container {
+    padding-left: 48px;
+  }
+}
